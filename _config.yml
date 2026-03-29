@@ -1,0 +1,19 @@
+title: System Design Learning Roadmap
+description: A complete, structured curriculum covering system design from core concepts through distributed systems and interview-ready problem walkthroughs — 62 topics across 7 phases.
+theme: jekyll-theme-cayman
+
+plugins:
+  - jekyll-relative-links
+
+relative_links:
+  enabled: true
+  collections: true
+
+include:
+  - Phase-1-Core-Concepts
+  - Phase-2-Networking-Fundamentals
+  - Phase-3-API-Fundamentals
+  - Phase-4-Database-Fundamentals
+  - Phase-5-Caching-and-Async-Communication
+  - Phase-6-Distributed-Systems-and-Architecture
+  - Phase-7-Interview-Problems
