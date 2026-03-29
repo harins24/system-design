@@ -1,0 +1,247 @@
+- title: "Scalability"
+  url: "/Phase-1-Core-Concepts/01-scalability/"
+  phase: "Phase 1 — Core Concepts"
+
+- title: "Availability"
+  url: "/Phase-1-Core-Concepts/02-availability/"
+  phase: "Phase 1 — Core Concepts"
+
+- title: "Reliability"
+  url: "/Phase-1-Core-Concepts/03-reliability/"
+  phase: "Phase 1 — Core Concepts"
+
+- title: "Single Point of Failure"
+  url: "/Phase-1-Core-Concepts/04-single-point-of-failure/"
+  phase: "Phase 1 — Core Concepts"
+
+- title: "Latency vs Throughput vs Bandwidth"
+  url: "/Phase-1-Core-Concepts/05-latency-throughput-bandwidth/"
+  phase: "Phase 1 — Core Concepts"
+
+- title: "Consistent Hashing"
+  url: "/Phase-1-Core-Concepts/06-consistent-hashing/"
+  phase: "Phase 1 — Core Concepts"
+
+- title: "CAP Theorem"
+  url: "/Phase-1-Core-Concepts/07-cap-theorem/"
+  phase: "Phase 1 — Core Concepts"
+
+- title: "Failover"
+  url: "/Phase-1-Core-Concepts/08-failover/"
+  phase: "Phase 1 — Core Concepts"
+
+- title: "Fault Tolerance"
+  url: "/Phase-1-Core-Concepts/09-fault-tolerance/"
+  phase: "Phase 1 — Core Concepts"
+
+- title: "OSI Model"
+  url: "/Phase-2-Networking-Fundamentals/01-osi-model/"
+  phase: "Phase 2 — Networking Fundamentals"
+
+- title: "IP Addresses"
+  url: "/Phase-2-Networking-Fundamentals/02-ip-addresses/"
+  phase: "Phase 2 — Networking Fundamentals"
+
+- title: "DNS"
+  url: "/Phase-2-Networking-Fundamentals/03-dns/"
+  phase: "Phase 2 — Networking Fundamentals"
+
+- title: "Proxy vs Reverse Proxy"
+  url: "/Phase-2-Networking-Fundamentals/04-proxy-vs-reverse-proxy/"
+  phase: "Phase 2 — Networking Fundamentals"
+
+- title: "HTTP / HTTPS"
+  url: "/Phase-2-Networking-Fundamentals/05-http-https/"
+  phase: "Phase 2 — Networking Fundamentals"
+
+- title: "TCP vs UDP"
+  url: "/Phase-2-Networking-Fundamentals/06-tcp-vs-udp/"
+  phase: "Phase 2 — Networking Fundamentals"
+
+- title: "Load Balancing"
+  url: "/Phase-2-Networking-Fundamentals/07-load-balancing/"
+  phase: "Phase 2 — Networking Fundamentals"
+
+- title: "Checksums"
+  url: "/Phase-2-Networking-Fundamentals/08-checksums/"
+  phase: "Phase 2 — Networking Fundamentals"
+
+- title: "APIs"
+  url: "/Phase-3-API-Fundamentals/01-apis/"
+  phase: "Phase 3 — API Fundamentals"
+
+- title: "API Gateway"
+  url: "/Phase-3-API-Fundamentals/02-api-gateway/"
+  phase: "Phase 3 — API Fundamentals"
+
+- title: "REST vs GraphQL"
+  url: "/Phase-3-API-Fundamentals/03-rest-vs-graphql/"
+  phase: "Phase 3 — API Fundamentals"
+
+- title: "WebSockets"
+  url: "/Phase-3-API-Fundamentals/04-websockets/"
+  phase: "Phase 3 — API Fundamentals"
+
+- title: "Webhooks"
+  url: "/Phase-3-API-Fundamentals/05-webhooks/"
+  phase: "Phase 3 — API Fundamentals"
+
+- title: "Idempotency"
+  url: "/Phase-3-API-Fundamentals/06-idempotency/"
+  phase: "Phase 3 — API Fundamentals"
+
+- title: "Rate Limiting"
+  url: "/Phase-3-API-Fundamentals/07-rate-limiting/"
+  phase: "Phase 3 — API Fundamentals"
+
+- title: "API Design"
+  url: "/Phase-3-API-Fundamentals/08-api-design/"
+  phase: "Phase 3 — API Fundamentals"
+
+- title: "ACID Transactions"
+  url: "/Phase-4-Database-Fundamentals/01-acid-transactions/"
+  phase: "Phase 4 — Database Fundamentals"
+
+- title: "SQL vs NoSQL"
+  url: "/Phase-4-Database-Fundamentals/02-sql-vs-nosql/"
+  phase: "Phase 4 — Database Fundamentals"
+
+- title: "Database Indexes"
+  url: "/Phase-4-Database-Fundamentals/03-database-indexes/"
+  phase: "Phase 4 — Database Fundamentals"
+
+- title: "Database Sharding"
+  url: "/Phase-4-Database-Fundamentals/04-database-sharding/"
+  phase: "Phase 4 — Database Fundamentals"
+
+- title: "Data Replication"
+  url: "/Phase-4-Database-Fundamentals/05-data-replication/"
+  phase: "Phase 4 — Database Fundamentals"
+
+- title: "Database Scaling"
+  url: "/Phase-4-Database-Fundamentals/06-database-scaling/"
+  phase: "Phase 4 — Database Fundamentals"
+
+- title: "Types of Databases"
+  url: "/Phase-4-Database-Fundamentals/07-database-types/"
+  phase: "Phase 4 — Database Fundamentals"
+
+- title: "Bloom Filters"
+  url: "/Phase-4-Database-Fundamentals/08-bloom-filters/"
+  phase: "Phase 4 — Database Fundamentals"
+
+- title: "Database Architectures"
+  url: "/Phase-4-Database-Fundamentals/09-database-architectures/"
+  phase: "Phase 4 — Database Fundamentals"
+
+- title: "Caching 101"
+  url: "/Phase-5-Caching-and-Async-Communication/01-caching-101/"
+  phase: "Phase 5 — Caching + Async Communication"
+
+- title: "Caching Strategies"
+  url: "/Phase-5-Caching-and-Async-Communication/02-caching-strategies/"
+  phase: "Phase 5 — Caching + Async Communication"
+
+- title: "Cache Eviction Policies"
+  url: "/Phase-5-Caching-and-Async-Communication/03-cache-eviction-policies/"
+  phase: "Phase 5 — Caching + Async Communication"
+
+- title: "Distributed Caching"
+  url: "/Phase-5-Caching-and-Async-Communication/04-distributed-caching/"
+  phase: "Phase 5 — Caching + Async Communication"
+
+- title: "CDN"
+  url: "/Phase-5-Caching-and-Async-Communication/05-cdn/"
+  phase: "Phase 5 — Caching + Async Communication"
+
+- title: "Pub/Sub"
+  url: "/Phase-5-Caching-and-Async-Communication/06-pub-sub/"
+  phase: "Phase 5 — Caching + Async Communication"
+
+- title: "Message Queues"
+  url: "/Phase-5-Caching-and-Async-Communication/07-message-queues/"
+  phase: "Phase 5 — Caching + Async Communication"
+
+- title: "Change Data Capture"
+  url: "/Phase-5-Caching-and-Async-Communication/08-change-data-capture/"
+  phase: "Phase 5 — Caching + Async Communication"
+
+- title: "Microservices Architecture"
+  url: "/Phase-6-Distributed-Systems-and-Architecture/01-microservices-architecture/"
+  phase: "Phase 6 — Distributed Systems & Architecture"
+
+- title: "CQRS and Event Sourcing"
+  url: "/Phase-6-Distributed-Systems-and-Architecture/02-cqrs-event-sourcing/"
+  phase: "Phase 6 — Distributed Systems & Architecture"
+
+- title: "Service Discovery and Load Balancing"
+  url: "/Phase-6-Distributed-Systems-and-Architecture/03-service-discovery-load-balancing/"
+  phase: "Phase 6 — Distributed Systems & Architecture"
+
+- title: "Distributed Transactions"
+  url: "/Phase-6-Distributed-Systems-and-Architecture/04-distributed-transactions/"
+  phase: "Phase 6 — Distributed Systems & Architecture"
+
+- title: "Consistency Patterns"
+  url: "/Phase-6-Distributed-Systems-and-Architecture/05-consistency-patterns/"
+  phase: "Phase 6 — Distributed Systems & Architecture"
+
+- title: "Fault Tolerance and Resilience Patterns"
+  url: "/Phase-6-Distributed-Systems-and-Architecture/06-fault-tolerance-resilience/"
+  phase: "Phase 6 — Distributed Systems & Architecture"
+
+- title: "Distributed Tracing and Observability"
+  url: "/Phase-6-Distributed-Systems-and-Architecture/07-distributed-tracing-observability/"
+  phase: "Phase 6 — Distributed Systems & Architecture"
+
+- title: "Deployment Strategies"
+  url: "/Phase-6-Distributed-Systems-and-Architecture/08-deployment-strategies/"
+  phase: "Phase 6 — Distributed Systems & Architecture"
+
+- title: "Scalability Patterns"
+  url: "/Phase-6-Distributed-Systems-and-Architecture/09-scalability-patterns/"
+  phase: "Phase 6 — Distributed Systems & Architecture"
+
+- title: "Consensus Algorithms"
+  url: "/Phase-6-Distributed-Systems-and-Architecture/10-consensus-algorithms/"
+  phase: "Phase 6 — Distributed Systems & Architecture"
+
+- title: "MapReduce and Batch Processing"
+  url: "/Phase-6-Distributed-Systems-and-Architecture/11-mapreduce-batch-processing/"
+  phase: "Phase 6 — Distributed Systems & Architecture"
+
+- title: "Stream Processing"
+  url: "/Phase-6-Distributed-Systems-and-Architecture/12-stream-processing/"
+  phase: "Phase 6 — Distributed Systems & Architecture"
+
+- title: "How to Approach System Design Interviews"
+  url: "/Phase-7-Interview-Problems/01-system-design-interview-approach/"
+  phase: "Phase 7 — Interview Problems"
+
+- title: "Design a URL Shortener"
+  url: "/Phase-7-Interview-Problems/02-url-shortener/"
+  phase: "Phase 7 — Interview Problems"
+
+- title: "Design a Rate Limiter"
+  url: "/Phase-7-Interview-Problems/03-rate-limiter-design/"
+  phase: "Phase 7 — Interview Problems"
+
+- title: "Design a Key-Value Store"
+  url: "/Phase-7-Interview-Problems/04-key-value-store-design/"
+  phase: "Phase 7 — Interview Problems"
+
+- title: "Design a Message Queue"
+  url: "/Phase-7-Interview-Problems/05-message-queue-design/"
+  phase: "Phase 7 — Interview Problems"
+
+- title: "Design a Social Media Feed"
+  url: "/Phase-7-Interview-Problems/06-social-media-feed-design/"
+  phase: "Phase 7 — Interview Problems"
+
+- title: "Design a Notification System"
+  url: "/Phase-7-Interview-Problems/07-notification-system-design/"
+  phase: "Phase 7 — Interview Problems"
+
+- title: "Design a Ride-Sharing System"
+  url: "/Phase-7-Interview-Problems/08-ride-sharing-design/"
+  phase: "Phase 7 — Interview Problems"
