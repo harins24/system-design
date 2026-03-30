@@ -325,8 +325,16 @@
       {% assign current_entry = nav_pages[current_index] %}
       <div class="page-meta">
         <a href="{{ '/' | relative_url }}">Home</a>
+        {% if current_entry.section_url %}
+          <span>›</span>
+          <a href="{{ current_entry.section_url | relative_url }}">{{ current_entry.section }}</a>
+        {% endif %}
         <span>›</span>
-        <span>{{ current_entry.phase }}</span>
+        {% if current_entry.phase_url %}
+          <a href="{{ current_entry.phase_url | relative_url }}">{{ current_entry.phase }}</a>
+        {% else %}
+          <span>{{ current_entry.phase }}</span>
+        {% endif %}
         <span>›</span>
         <span>{{ current_entry.title }}</span>
       </div>
