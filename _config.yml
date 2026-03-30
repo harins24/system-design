@@ -14,13 +14,7 @@ relative_links:
   collections: true
 
 include:
-  - Phase-1-Core-Concepts
-  - Phase-2-Networking-Fundamentals
-  - Phase-3-API-Fundamentals
-  - Phase-4-Database-Fundamentals
-  - Phase-5-Caching-and-Async-Communication
-  - Phase-6-Distributed-Systems-and-Architecture
-  - Phase-7-Interview-Problems
+  - system-design-fundamentals
 
 defaults:
   - scope:
