@@ -1,0 +1,19 @@
+- title: "Product Catalog Management System"
+  url: "/system-design-usecases/retail-industry/01-product-catalog-management-system/"
+  phase: "Retail Industry"
+
+- title: "Shopping Cart System"
+  url: "/system-design-usecases/retail-industry/02-shopping-cart-system/"
+  phase: "Retail Industry"
+
+- title: "Order Processing Pipeline"
+  url: "/system-design-usecases/retail-industry/03-order-processing-pipeline/"
+  phase: "Retail Industry"
+
+- title: "Flash Sale System"
+  url: "/system-design-usecases/retail-industry/04-flash-sale-system-design/"
+  phase: "Retail Industry"
+
+- title: "Inventory Management Across Multiple Warehouses"
+  url: "/system-design-usecases/retail-industry/05-inventory-management-across-multiple-warehouses/"
+  phase: "Retail Industry"

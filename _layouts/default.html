@@ -296,7 +296,7 @@
 
   <main class="site-main">
 
-    {% comment %} Resolve prev/next from nav data {% endcomment %}
+    {% comment %} Resolve prev/next — check fundamentals nav first, then usecases nav {% endcomment %}
     {% assign nav_pages = site.data.nav %}
     {% assign current_found = false %}
     {% assign current_index = 0 %}
@@ -308,6 +308,18 @@
         {% endunless %}
       {% endif %}
     {% endfor %}
+
+    {% unless current_found %}
+      {% assign nav_pages = site.data.usecases_nav %}
+      {% for nav_page in nav_pages %}
+        {% if nav_page.url == page.url %}
+          {% unless current_found %}
+            {% assign current_index = forloop.index0 %}
+            {% assign current_found = true %}
+          {% endunless %}
+        {% endif %}
+      {% endfor %}
+    {% endunless %}
 
     {% if current_found %}
       {% assign current_entry = nav_pages[current_index] %}

@@ -15,6 +15,7 @@ relative_links:
 
 include:
   - system-design-fundamentals
+  - system-design-usecases
 
 defaults:
   - scope:
