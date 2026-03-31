@@ -1,5 +1,5 @@
-title: System Design Learning Roadmap
-description: A complete, structured curriculum covering system design from core concepts through distributed systems and interview-ready problem walkthroughs — 62 topics across 7 phases.
+title: System Design Notes
+description: A complete system design learning curriculum — 62 topics across 7 phases.
 
 baseurl: "/technical-learning"
 url: "https://harins24.github.io"
@@ -16,6 +16,7 @@ relative_links:
 include:
   - system-design-fundamentals
   - system-design-usecases
+  - technology
 
 defaults:
   - scope:

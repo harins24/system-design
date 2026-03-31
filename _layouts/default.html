@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <style>
-    /* Zendesk Garden design tokens */
     :root {
       --blue-600: #1F73B7;
       --blue-700: #1A5E9B;
@@ -17,6 +16,8 @@
       --grey-600: #68737D;
       --grey-800: #2F3941;
       --white: #FFFFFF;
+      --sidebar-w: 272px;
+      --header-h: 48px;
       --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
     }
@@ -34,93 +35,189 @@
 
     /* ── Header ── */
     .site-header {
-      background: var(--white);
-      border-bottom: 1px solid var(--grey-300);
-      height: 56px;
+      background: var(--grey-800);
+      height: var(--header-h);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 24px;
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+      padding: 0 16px 0 0;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 300;
+      box-shadow: 0 1px 3px rgba(0,0,0,.25);
     }
 
-    .site-header__brand {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--grey-800);
-      text-decoration: none;
-      letter-spacing: -0.01em;
-    }
-
-    .site-header__brand:hover { color: var(--blue-600); }
-
-    /* ── Buttons ── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 14px;
-      border-radius: 4px;
-      font-size: 13px;
-      font-weight: 500;
-      font-family: var(--font);
-      cursor: pointer;
-      text-decoration: none;
-      border: 1px solid transparent;
-      line-height: 1.4;
-      white-space: nowrap;
-      transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease, box-shadow 0.12s ease;
-    }
-
-    .btn:focus-visible {
-      outline: 3px solid var(--blue-100);
-      outline-offset: 2px;
-    }
-
-    /* Default / ghost */
-    .btn--default {
-      background: var(--white);
-      color: var(--grey-800);
-      border-color: var(--grey-300);
-    }
-    .btn--default:hover {
-      background: var(--grey-100);
-      border-color: var(--grey-500);
-      color: var(--grey-800);
-      box-shadow: 0 1px 3px rgba(0,0,0,.08);
-    }
-
-    /* Primary */
-    .btn--primary {
-      background: var(--blue-600);
-      color: var(--white);
-      border-color: var(--blue-600);
-    }
-    .btn--primary:hover {
-      background: var(--blue-700);
-      border-color: var(--blue-700);
-      color: var(--white);
-      box-shadow: 0 2px 6px rgba(31,115,183,.3);
-    }
-
-    /* ── Layout ── */
-    .site-main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 32px 20px 64px;
-    }
-
-    /* ── Breadcrumb / phase label ── */
-    .page-meta {
-      font-size: 12px;
-      color: var(--grey-600);
-      margin-bottom: 12px;
+    .site-header__left {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 0;
+      height: 100%;
+    }
+
+    /* hamburger — mobile only */
+    .sidebar-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: var(--header-h);
+      height: var(--header-h);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #cdd3d8;
+      flex-shrink: 0;
+    }
+    .sidebar-toggle:hover { color: #fff; }
+    .sidebar-toggle svg { width: 18px; height: 18px; }
+
+    .site-header__brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 0 16px;
+      letter-spacing: -0.01em;
+    }
+    .site-header__brand:hover { color: #8eb8e5; }
+
+    .site-header__brand svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    .header-actions { display: flex; align-items: center; gap: 8px; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px; border-radius: 4px; font-size: 12.5px;
+      font-weight: 500; font-family: var(--font); cursor: pointer;
+      text-decoration: none; border: 1px solid transparent;
+      line-height: 1.4; white-space: nowrap;
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .btn--ghost {
+      background: transparent; color: #cdd3d8; border-color: #4a545e;
+    }
+    .btn--ghost:hover { background: #3d4852; border-color: #68737d; color: #fff; }
+    .btn--primary {
+      background: var(--blue-600); color: #fff; border-color: var(--blue-600);
+    }
+    .btn--primary:hover { background: var(--blue-700); border-color: var(--blue-700); }
+
+    /* ── Page shell — sidebar + content side by side ── */
+    .page-shell {
+      display: flex;
+      padding-top: var(--header-h);
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      position: fixed;
+      top: var(--header-h);
+      left: 0;
+      bottom: 0;
+      overflow-y: auto;
+      background: var(--white);
+      border-right: 1px solid var(--grey-300);
+      z-index: 200;
+      scrollbar-width: thin;
+      scrollbar-color: var(--grey-300) transparent;
+    }
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--grey-300); border-radius: 4px; }
+
+    /* sidebar overlay for mobile */
+    .sidebar-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.4);
+      z-index: 199;
+    }
+
+    /* ── Sidebar section header (top-level: Fundamentals / Deep Dives / Technology) ── */
+    .nav-section {
+      border-bottom: 1px solid var(--grey-200);
+    }
+
+    .nav-section__header {
+      display: flex; align-items: center; gap: 7px;
+      width: 100%; padding: 10px 14px;
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font); font-size: 11.5px; font-weight: 700;
+      color: var(--grey-600); text-transform: uppercase; letter-spacing: 0.06em;
+      text-align: left;
+      transition: background 0.1s;
+    }
+    .nav-section__header:hover { background: var(--grey-100); color: var(--grey-800); }
+
+    .nav-section__header svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .nav-section__header .chevron { margin-left: auto; transition: transform 0.18s; }
+    .nav-section__header.is-open .chevron { transform: rotate(90deg); }
+
+    .nav-section__body { display: none; }
+    .nav-section__body.is-open { display: block; }
+
+    /* ── Phase group inside a section ── */
+    .nav-group { }
+
+    .nav-group__header {
+      display: flex; align-items: center; gap: 6px;
+      width: 100%; padding: 6px 14px 6px 18px;
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font); font-size: 12px; font-weight: 600;
+      color: var(--grey-800); text-align: left;
+      transition: background 0.1s;
+    }
+    .nav-group__header:hover { background: var(--grey-100); }
+    .nav-group__header svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .nav-group__header .folder-icon { color: var(--grey-500); }
+    .nav-group__header .chevron-sm {
+      margin-left: auto; color: var(--grey-500);
+      transition: transform 0.18s; flex-shrink: 0;
+    }
+    .nav-group__header.is-open .chevron-sm { transform: rotate(90deg); }
+
+    .nav-group__items { display: none; list-style: none; }
+    .nav-group__items.is-open { display: block; }
+
+    /* ── Individual nav link ── */
+    .nav-item a {
+      display: flex; align-items: flex-start; gap: 6px;
+      padding: 4px 14px 4px 32px;
+      color: var(--grey-600); text-decoration: none;
+      font-size: 12.5px; line-height: 1.5;
+      border-left: 2px solid transparent;
+      transition: background 0.1s, color 0.1s, border-color 0.1s;
+    }
+    .nav-item a:hover {
+      background: var(--grey-100); color: var(--grey-800);
+    }
+    .nav-item a.is-active {
+      background: var(--blue-100);
+      color: var(--blue-700);
+      border-left-color: var(--blue-600);
+      font-weight: 600;
+    }
+    .nav-item a svg { width: 12px; height: 12px; flex-shrink: 0; margin-top: 3px; color: var(--grey-400); }
+    .nav-item a.is-active svg { color: var(--blue-600); }
+
+    /* ── Main content ── */
+    .site-main {
+      flex: 1;
+      margin-left: var(--sidebar-w);
+      min-width: 0;
+      padding: 28px 32px 72px;
+      max-width: 960px;
+    }
+
+    /* ── Breadcrumb ── */
+    .page-meta {
+      font-size: 11.5px; color: var(--grey-600);
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 5px; flex-wrap: wrap;
     }
     .page-meta a { color: var(--blue-600); text-decoration: none; }
     .page-meta a:hover { text-decoration: underline; }
@@ -130,155 +227,106 @@
       background: var(--white);
       border: 1px solid var(--grey-300);
       border-radius: 6px;
-      padding: 40px 48px;
+      padding: 36px 44px;
       box-shadow: 0 1px 4px rgba(0,0,0,.04);
     }
 
     /* ── Markdown typography ── */
     .content-card h1 {
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--grey-800);
-      margin-bottom: 20px;
-      letter-spacing: -0.02em;
-      line-height: 1.3;
+      font-size: 24px; font-weight: 700; color: var(--grey-800);
+      margin-bottom: 18px; letter-spacing: -0.02em; line-height: 1.3;
     }
     .content-card h2 {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--grey-800);
-      margin-top: 36px;
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--grey-200);
+      font-size: 17px; font-weight: 600; color: var(--grey-800);
+      margin-top: 32px; margin-bottom: 10px;
+      padding-bottom: 7px; border-bottom: 1px solid var(--grey-200);
     }
     .content-card h3 {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--grey-800);
-      margin-top: 24px;
-      margin-bottom: 8px;
+      font-size: 14.5px; font-weight: 600; color: var(--grey-800);
+      margin-top: 22px; margin-bottom: 7px;
     }
     .content-card h4 {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--grey-800);
-      margin-top: 20px;
-      margin-bottom: 6px;
+      font-size: 13.5px; font-weight: 600; color: var(--grey-800);
+      margin-top: 18px; margin-bottom: 5px;
     }
-    .content-card p { margin: 12px 0; }
+    .content-card p { margin: 10px 0; }
     .content-card a { color: var(--blue-600); text-decoration: none; }
     .content-card a:hover { text-decoration: underline; color: var(--blue-700); }
     .content-card strong { font-weight: 600; }
     .content-card em { font-style: italic; }
-
     .content-card code {
-      background: var(--grey-200);
-      color: var(--grey-800);
-      padding: 1px 5px;
-      border-radius: 3px;
-      font-size: 12.5px;
-      font-family: var(--font-mono);
+      background: var(--grey-200); color: var(--grey-800);
+      padding: 1px 5px; border-radius: 3px;
+      font-size: 12.5px; font-family: var(--font-mono);
     }
     .content-card pre {
-      background: var(--grey-800);
-      color: #e9ebed;
-      padding: 16px 20px;
-      border-radius: 4px;
-      overflow-x: auto;
-      margin: 16px 0;
+      background: #1e2428; color: #e6edf3;
+      padding: 16px 20px; border-radius: 5px;
+      overflow-x: auto; margin: 14px 0;
+      border: 1px solid #30363d;
     }
     .content-card pre code {
-      background: none;
-      color: inherit;
-      padding: 0;
-      font-size: 13px;
-      font-family: var(--font-mono);
+      background: none; color: inherit; padding: 0;
+      font-size: 12.5px; font-family: var(--font-mono);
     }
-
     .content-card table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 20px 0;
-      font-size: 13.5px;
+      border-collapse: collapse; width: 100%;
+      margin: 18px 0; font-size: 13px;
     }
     .content-card th {
-      background: var(--grey-100);
-      border: 1px solid var(--grey-300);
-      padding: 9px 14px;
-      text-align: left;
-      font-weight: 600;
-      color: var(--grey-800);
+      background: var(--grey-100); border: 1px solid var(--grey-300);
+      padding: 8px 13px; text-align: left;
+      font-weight: 600; color: var(--grey-800);
     }
     .content-card td {
       border: 1px solid var(--grey-300);
-      padding: 8px 14px;
-      vertical-align: top;
+      padding: 7px 13px; vertical-align: top;
     }
     .content-card tr:nth-child(even) td { background: var(--grey-100); }
-
     .content-card ul, .content-card ol {
-      padding-left: 22px;
-      margin: 12px 0;
+      padding-left: 22px; margin: 10px 0;
     }
-    .content-card li { margin: 5px 0; }
-    .content-card li > ul, .content-card li > ol { margin: 4px 0; }
-
+    .content-card li { margin: 4px 0; }
+    .content-card li > ul, .content-card li > ol { margin: 3px 0; }
     .content-card blockquote {
       border-left: 3px solid var(--blue-600);
-      padding: 8px 16px;
-      color: var(--grey-600);
-      margin: 16px 0;
-      background: var(--blue-100);
+      padding: 8px 16px; color: var(--grey-600);
+      margin: 14px 0; background: var(--blue-100);
       border-radius: 0 4px 4px 0;
     }
     .content-card blockquote p { margin: 0; }
-
     .content-card hr {
-      border: none;
-      border-top: 1px solid var(--grey-300);
-      margin: 32px 0;
+      border: none; border-top: 1px solid var(--grey-300); margin: 28px 0;
     }
+    .content-card img { max-width: 100%; border-radius: 4px; }
 
-    .content-card img {
-      max-width: 100%;
-      border-radius: 4px;
-    }
-
-    /* ── Bottom nav ── */
+    /* ── Bottom prev/next nav ── */
     .page-nav {
-      display: flex;
-      align-items: center;
+      display: flex; align-items: center;
       justify-content: space-between;
-      margin-top: 28px;
-      gap: 12px;
+      margin-top: 24px; gap: 12px;
     }
-
     .page-nav__side {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 0;
+      display: flex; align-items: center; gap: 8px; min-width: 0;
     }
-
-    .page-nav__label {
-      font-size: 11px;
-      color: var(--grey-500);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
     .btn--nav {
-      max-width: 260px;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      max-width: 260px; overflow: hidden; text-overflow: ellipsis;
     }
 
-    @media (max-width: 600px) {
-      .content-card { padding: 24px 20px; }
-      .site-main { padding: 20px 12px 48px; }
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .sidebar-toggle { display: flex; }
+
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.22s ease;
+        z-index: 250;
+      }
+      .sidebar.is-open { transform: translateX(0); }
+      .sidebar-overlay.is-open { display: block; }
+
+      .site-main { margin-left: 0; padding: 20px 16px 56px; }
+      .content-card { padding: 22px 18px; }
       .page-nav { flex-wrap: wrap; }
       .page-nav__side { width: 100%; }
       .btn--nav { max-width: 100%; }
@@ -288,29 +336,170 @@
 <body>
 
   <header class="site-header">
-    <a href="{{ '/' | relative_url }}" class="site-header__brand">{{ site.title }}</a>
-    <a href="{{ '/' | relative_url }}" class="btn btn--default">
-      &#8962; Home
-    </a>
+    <div class="site-header__left">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <a href="{{ '/' | relative_url }}" class="site-header__brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+        {{ site.title }}
+      </a>
+    </div>
+    <div class="header-actions">
+      <a href="https://github.com/harins24/technical-learning" class="btn btn--ghost" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        GitHub
+      </a>
+    </div>
   </header>
 
-  <main class="site-main">
+  <div class="page-shell">
 
-    {% comment %} Resolve prev/next — check fundamentals nav first, then usecases nav {% endcomment %}
-    {% assign nav_pages = site.data.nav %}
-    {% assign current_found = false %}
-    {% assign current_index = 0 %}
-    {% for nav_page in nav_pages %}
-      {% if nav_page.url == page.url %}
-        {% unless current_found %}
-          {% assign current_index = forloop.index0 %}
-          {% assign current_found = true %}
-        {% endunless %}
-      {% endif %}
-    {% endfor %}
+    <!-- ── Sidebar overlay (mobile) ── -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    {% unless current_found %}
-      {% assign nav_pages = site.data.usecases_nav %}
+    <!-- ── Sidebar ── -->
+    <nav class="sidebar" id="sidebar" aria-label="Site navigation">
+
+      {% comment %} ── Section 1: System Design Fundamentals ── {% endcomment %}
+      {% assign fund_groups = site.data.nav | group_by: "phase" %}
+      <div class="nav-section" id="section-fundamentals">
+        <button class="nav-section__header" data-target="body-fundamentals">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+          </svg>
+          System Design Fundamentals
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+        <div class="nav-section__body" id="body-fundamentals">
+          {% for group in fund_groups %}
+          <div class="nav-group">
+            <button class="nav-group__header" data-target="group-{{ group.name | slugify }}">
+              <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+              </svg>
+              {{ group.name }}
+              <svg class="chevron-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </button>
+            <ul class="nav-group__items" id="group-{{ group.name | slugify }}">
+              {% for item in group.items %}
+              <li class="nav-item">
+                <a href="{{ item.url | relative_url }}"
+                   {% if page.url == item.url %}class="is-active"{% endif %}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                  </svg>
+                  {{ item.title }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% comment %} ── Section 2: System Design Deep Dives ── {% endcomment %}
+      {% assign usecase_groups = site.data.usecases_nav | group_by: "phase" %}
+      <div class="nav-section" id="section-usecases">
+        <button class="nav-section__header" data-target="body-usecases">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+          </svg>
+          System Design Deep Dives
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+        <div class="nav-section__body" id="body-usecases">
+          {% for group in usecase_groups %}
+          <div class="nav-group">
+            <button class="nav-group__header" data-target="uc-group-{{ group.name | slugify }}">
+              <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+              </svg>
+              {{ group.name }}
+              <svg class="chevron-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </button>
+            <ul class="nav-group__items" id="uc-group-{{ group.name | slugify }}">
+              {% for item in group.items %}
+              <li class="nav-item">
+                <a href="{{ item.url | relative_url }}"
+                   {% if page.url == item.url %}class="is-active"{% endif %}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                  </svg>
+                  {{ item.title }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% comment %} ── Section 3: Technology ── {% endcomment %}
+      <div class="nav-section" id="section-technology">
+        <button class="nav-section__header" data-target="body-technology">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+          </svg>
+          Technology
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+        <div class="nav-section__body" id="body-technology">
+          <div class="nav-group">
+            <button class="nav-group__header" data-target="tech-group-kafka">
+              <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+              </svg>
+              Kafka
+              <svg class="chevron-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </button>
+            <ul class="nav-group__items" id="tech-group-kafka">
+              <li class="nav-item">
+                <a href="{{ '/technology/kafka/questions/' | relative_url }}"
+                   {% if page.url == '/technology/kafka/questions/' %}class="is-active"{% endif %}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                  </svg>
+                  Questions
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </nav><!-- /sidebar -->
+
+    <!-- ── Main content ── -->
+    <main class="site-main">
+
+      {% comment %} Resolve prev/next — fundamentals nav first, then usecases {% endcomment %}
+      {% assign nav_pages = site.data.nav %}
+      {% assign current_found = false %}
+      {% assign current_index = 0 %}
       {% for nav_page in nav_pages %}
         {% if nav_page.url == page.url %}
           {% unless current_found %}
@@ -319,65 +508,141 @@
           {% endunless %}
         {% endif %}
       {% endfor %}
-    {% endunless %}
 
-    {% if current_found %}
-      {% assign current_entry = nav_pages[current_index] %}
-      <div class="page-meta">
-        <a href="{{ '/' | relative_url }}">Home</a>
-        {% if current_entry.section_url %}
+      {% unless current_found %}
+        {% assign nav_pages = site.data.usecases_nav %}
+        {% for nav_page in nav_pages %}
+          {% if nav_page.url == page.url %}
+            {% unless current_found %}
+              {% assign current_index = forloop.index0 %}
+              {% assign current_found = true %}
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      {% endunless %}
+
+      {% if current_found %}
+        {% assign current_entry = nav_pages[current_index] %}
+        <div class="page-meta">
+          <a href="{{ '/' | relative_url }}">Home</a>
+          {% if current_entry.section_url %}
+            <span>›</span>
+            <a href="{{ current_entry.section_url | relative_url }}">{{ current_entry.section }}</a>
+          {% endif %}
           <span>›</span>
-          <a href="{{ current_entry.section_url | relative_url }}">{{ current_entry.section }}</a>
-        {% endif %}
-        <span>›</span>
-        {% if current_entry.phase_url %}
-          <a href="{{ current_entry.phase_url | relative_url }}">{{ current_entry.phase }}</a>
-        {% else %}
-          <span>{{ current_entry.phase }}</span>
-        {% endif %}
-        <span>›</span>
-        <span>{{ current_entry.title }}</span>
-      </div>
-    {% endif %}
-
-    <article class="content-card">
-      {{ content }}
-    </article>
-
-    {% if current_found %}
-      {% assign prev_page = nil %}
-      {% assign next_page = nil %}
-
-      {% if current_index > 0 %}
-        {% assign prev_index = current_index | minus: 1 %}
-        {% assign prev_page = nav_pages[prev_index] %}
+          {% if current_entry.phase_url %}
+            <a href="{{ current_entry.phase_url | relative_url }}">{{ current_entry.phase }}</a>
+          {% else %}
+            <span>{{ current_entry.phase }}</span>
+          {% endif %}
+          <span>›</span>
+          <span>{{ current_entry.title }}</span>
+        </div>
       {% endif %}
 
-      {% assign next_index = current_index | plus: 1 %}
-      {% if next_index < nav_pages.size %}
-        {% assign next_page = nav_pages[next_index] %}
+      <article class="content-card">
+        {{ content }}
+      </article>
+
+      {% if current_found %}
+        {% assign prev_page = nil %}
+        {% assign next_page = nil %}
+
+        {% if current_index > 0 %}
+          {% assign prev_index = current_index | minus: 1 %}
+          {% assign prev_page = nav_pages[prev_index] %}
+        {% endif %}
+
+        {% assign next_index = current_index | plus: 1 %}
+        {% if next_index < nav_pages.size %}
+          {% assign next_page = nav_pages[next_index] %}
+        {% endif %}
+
+        <nav class="page-nav" aria-label="Page navigation">
+          <div class="page-nav__side">
+            {% if prev_page %}
+              <a href="{{ prev_page.url | relative_url }}" class="btn btn--ghost btn--nav" title="{{ prev_page.title }}">
+                &#8592; {{ prev_page.title }}
+              </a>
+            {% endif %}
+          </div>
+          <div class="page-nav__side" style="justify-content: flex-end;">
+            {% if next_page %}
+              <a href="{{ next_page.url | relative_url }}" class="btn btn--primary btn--nav" title="{{ next_page.title }}">
+                {{ next_page.title }} &#8594;
+              </a>
+            {% endif %}
+          </div>
+        </nav>
       {% endif %}
 
-      <nav class="page-nav" aria-label="Page navigation">
-        <div class="page-nav__side">
-          {% if prev_page %}
-            <a href="{{ prev_page.url | relative_url }}" class="btn btn--default btn--nav" title="{{ prev_page.title }}">
-              &#8592; {{ prev_page.title }}
-            </a>
-          {% endif %}
-        </div>
+    </main><!-- /site-main -->
 
-        <div class="page-nav__side" style="justify-content: flex-end;">
-          {% if next_page %}
-            <a href="{{ next_page.url | relative_url }}" class="btn btn--primary btn--nav" title="{{ next_page.title }}">
-              {{ next_page.title }} &#8594;
-            </a>
-          {% endif %}
-        </div>
-      </nav>
-    {% endif %}
+  </div><!-- /page-shell -->
 
-  </main>
+  <script>
+    (function () {
+      'use strict';
+
+      // ── Section expand/collapse ──
+      document.querySelectorAll('.nav-section__header').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetId = this.getAttribute('data-target');
+          var body = document.getElementById(targetId);
+          var isOpen = body.classList.toggle('is-open');
+          this.classList.toggle('is-open', isOpen);
+        });
+      });
+
+      // ── Phase group expand/collapse ──
+      document.querySelectorAll('.nav-group__header').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetId = this.getAttribute('data-target');
+          var list = document.getElementById(targetId);
+          var isOpen = list.classList.toggle('is-open');
+          this.classList.toggle('is-open', isOpen);
+        });
+      });
+
+      // ── Auto-open the section and group that contains the active link ──
+      var active = document.querySelector('.nav-item a.is-active');
+      if (active) {
+        // Open the parent group
+        var groupList = active.closest('.nav-group__items');
+        if (groupList) {
+          groupList.classList.add('is-open');
+          var groupBtn = groupList.previousElementSibling;
+          if (groupBtn) groupBtn.classList.add('is-open');
+        }
+        // Open the parent section
+        var sectionBody = active.closest('.nav-section__body');
+        if (sectionBody) {
+          sectionBody.classList.add('is-open');
+          var sectionBtn = sectionBody.previousElementSibling;
+          if (sectionBtn) sectionBtn.classList.add('is-open');
+        }
+        // Scroll the active item into view in the sidebar
+        setTimeout(function () { active.scrollIntoView({ block: 'nearest' }); }, 120);
+      } else {
+        // No active page — open all sections by default (for index/home pages)
+        document.querySelectorAll('.nav-section__body').forEach(function (b) { b.classList.add('is-open'); });
+        document.querySelectorAll('.nav-section__header').forEach(function (b) { b.classList.add('is-open'); });
+      }
+
+      // ── Mobile hamburger ──
+      var toggle   = document.getElementById('sidebarToggle');
+      var sidebar  = document.getElementById('sidebar');
+      var overlay  = document.getElementById('sidebarOverlay');
+
+      function openSidebar()  { sidebar.classList.add('is-open');  overlay.classList.add('is-open'); }
+      function closeSidebar() { sidebar.classList.remove('is-open'); overlay.classList.remove('is-open'); }
+
+      toggle.addEventListener('click', function () {
+        sidebar.classList.contains('is-open') ? closeSidebar() : openSidebar();
+      });
+      overlay.addEventListener('click', closeSidebar);
+    })();
+  </script>
 
 </body>
 </html>
