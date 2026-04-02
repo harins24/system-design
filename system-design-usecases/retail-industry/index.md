@@ -22,14 +22,14 @@ Detailed system design documents for e-commerce backend scenarios using **Java 1
 | 7 | [Dynamic Pricing System](07-dynamic-pricing-system.md) |
 | 8 | [Returns and Refunds System](08-returns-and-refunds-system.md) |
 | 9 | [Loyalty and Rewards Program](09-loyalty-and-rewards-program.md) |
-| 10 | [Multi-tenant Marketplace Platform](10-multi-tenant-marketplace-platform.md) |
-| 11 | [Gift Card and Promo Codes](11-gift-card-and-promo-codes.md) |
+| 10 | [Multi-Tenant Marketplace Platform](10-multi-tenant-marketplace-platform.md) |
+| 11 | [Gift Card and Promotional Code System](11-gift-card-and-promo-codes.md) |
 | 12 | [Subscription and Recurring Orders](12-subscription-and-recurring-orders.md) |
 | 13 | [Product Review and Rating System](13-product-review-and-rating-system.md) |
 | 14 | [Store Locator and Pickup System](14-store-locator-and-pickup-system.md) |
 | 15 | [Personalized Email Campaign System](15-personalized-email-campaign-system.md) |
 | 16 | [Fraud Detection System](16-fraud-detection-system.md) |
 | 17 | [Search and Browse System](17-search-and-browse-system.md) |
-| 18 | [Seller Onboarding and Management](18-seller-onboarding-and-management.md) |
+| 18 | [Seller Onboarding and Management Platform](18-seller-onboarding-and-management.md) |
 | 19 | [Warehouse Management System Integration](19-warehouse-management-system-integration.md) |
 | 20 | [Customer Service and Ticketing System](20-customer-service-and-ticketing-system.md) |
