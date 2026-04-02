@@ -13,4 +13,4 @@ Detailed system design documents for e-commerce backend scenarios using **Java 1
 
 | # | Topic                                                                                                    |
 |---|----------------------------------------------------------------------------------------------------------|
-| 1 | [Retail Industry](retail-industry/)                                                                      |
+| 1 | [E-Commerce & Retail Systems](ecommerce-and-retail-systems/)                                                                      |
